@@ -1,0 +1,44 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { QuestionService } from '../services/question.service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  questionCategoryList: any;
+  constructor(
+    private questionService: QuestionService,
+    private router: Router
+  ) {}
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  ngOnInit(): void {
+    this.questionService.getQuestionCategoryList().subscribe(
+      (res) => {
+        console.log('Question Category List:', res);
+        this.questionCategoryList = res.data;
+      },
+      (error) => {
+        console.error('getQuestionCategoryList failed:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'เกิดข้อผิดพลาด\n กรุณาลองใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/']);
+          }
+        });
+      }
+    );
+  }
+
+  goToCategoryDetail(id: string): void {
+    this.router.navigate(['/category', id]);
+  }
+}
