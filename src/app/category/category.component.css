@@ -20,6 +20,7 @@
   }
   
   .question {
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 15px;
@@ -77,16 +78,26 @@
   }
   
   .timer-text {
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
-    color: #ff6347;
+    color: #0dff00;
     text-align: center;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     display: inline-block;
   }
+  .top-right-timer {
+    position: absolute;
+    top: 0.2;
+    right: 0;
+    padding: 1rem; 
+    margin: 1rem;/* Optional: adds padding inside the element */
+    background-color: rgb(177, 166, 166); /* Optional: background color with some transparency */
+    color: white; /* Optional: text color */
+    border-radius: 0.5rem; /* Optional: rounds the corners */
+}
   
   .countdown-timer {
     font-size: 1.5em;

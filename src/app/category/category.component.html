@@ -1,41 +1,47 @@
 <div class="category-details" *ngIf="category">
-    <h2 class="category-title">{{ category.title }}</h2>
-    <div class="countdown-timer mb-3">
-      <p class="timer-text">{{ formatTime(countdown) }}</p>
-    </div>
-    <div class="question mb-3">
-      <h3>ข้อที่ {{currentQuestionIndex + 1}}&nbsp;&nbsp;{{ category.questionInfo[currentQuestionIndex].title }}</h3>
-      <ul>
-        <li
-          *ngFor="
-            let answer of category.questionInfo[currentQuestionIndex]
-              .questionAnswerInfo
-          "
-        >
-          <input
-            type="checkbox"
-            id="{{ answer.questionAnswerId }}"
-            [checked]="isCheckboxChecked(answer.questionAnswerId)"
-            (change)="updateCheckboxState(answer.questionAnswerId)"
-          />
-          <label for="{{ answer.questionAnswerId }}">{{ answer.answer }}</label>
-        </li>
-      </ul>
-    </div>
-    <div class="pagination">
-      <button (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">
-        Previous
-      </button>
-      <span>Question {{ currentQuestionIndex + 1 }} / {{ totalQuestions }}</span>
-      <button
-        (click)="nextQuestion()"
-        [disabled]="currentQuestionIndex === totalQuestions - 1"
-      >
-        Next
-      </button>
-    </div>
-    <div class="container mt-4">
-      <button class="submit-button" (click)="submitResult()">Submit</button>
-    </div>
+  <p class="top-right-timer">{{ formatTime(countdown) }}</p>
+
+  <div class="countdown-timer mb-3">
+    <p class="timer-text">{{ category.title }}</p>
   </div>
-  
+  <span style="color: #ffffff"
+    >Question {{ currentQuestionIndex + 1 }} / {{ totalQuestions }}</span
+  >
+  <div class="question mb-3">
+    <h3>
+      ข้อที่ {{ currentQuestionIndex + 1 }}&nbsp;&nbsp;{{
+        category.questionInfo[currentQuestionIndex].title
+      }}
+    </h3>
+    <ul>
+      <li
+        *ngFor="
+          let answer of category.questionInfo[currentQuestionIndex]
+            .questionAnswerInfo
+        "
+      >
+        <input
+          type="checkbox"
+          id="{{ answer.questionAnswerId }}"
+          [checked]="isCheckboxChecked(answer.questionAnswerId)"
+          (change)="updateCheckboxState(answer.questionAnswerId)"
+        />
+        <label for="{{ answer.questionAnswerId }}">{{ answer.answer }}</label>
+      </li>
+    </ul>
+  </div>
+  <div class="pagination">
+    <button class="w-100" (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">
+      Previous
+    </button>
+    <button class="w-100"
+      (click)="nextQuestion()"
+      [disabled]="currentQuestionIndex === totalQuestions - 1"
+    >
+      Next
+    </button>
+  </div>
+  <div class="container mt-4">
+    <button class="submit-button  w-100" (click)="submitResult()">Submit</button>
+  </div>
+</div>
